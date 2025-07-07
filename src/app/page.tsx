@@ -176,9 +176,9 @@ useEffect(() => {
         {
           id: "logos",
           title: t.logosTitle,
-          subtitle: t.logosDesc,
+          subtitle: t.logosDesc, 
           button: t.logosBtn,
-          link: "/cimage/nurotshirt/PrivacyPolicy/QNA/login/uploadimage/",
+          link: "/cimage/",
         },
         {
           id: "community",
