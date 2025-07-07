@@ -48,7 +48,7 @@ export default function FileUploader() {
         className="w-full min-w-[700px] max-w-6xl min-h-[150px] p-5 border-2 border-dashed border-white rounded-md text-center flex justify-center items-center"
       >
         {previewUrl ? (
-          <img
+          <Image
             src={previewUrl}
             alt="Preview"
             className="mx-auto max-h-64 object-contain"
