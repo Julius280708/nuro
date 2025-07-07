@@ -1,0 +1,192 @@
+
+/*------------------*/
+/* Global Variables */
+/*------------------*/
+
+.snipcart {
+  --snipcart-color-primary: #000000;       /* Primary buttons and accents */
+  --snipcart-color-secondary: #ffffff;     /* Secondary buttons */
+  --snipcart-color-success: #00ff00;
+  --snipcart-color-error: #ff0000;
+  --snipcart-color-link: #000000;
+
+  --snipcart-font-family-base: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --snipcart-font-size-base: 15px;
+
+  --snipcart-border-radius: 12px;
+  --snipcart-overlay-background: rgba(0, 0, 0, 0.9);
+
+  --snipcart-background-color: #ffffff;
+  --snipcart-text-color: #000000;
+}
+
+/*------------------*/
+/* Typography */
+/*------------------*/
+.snipcart *,
+.snipcart *::before,
+.snipcart *::after {
+  font-family: var(--snipcart-font-family-base) !important;
+  font-size: var(--snipcart-font-size-base) !important;
+  box-sizing: border-box;
+}
+
+/*------------------*/
+/* Layout Colors */
+/*------------------*/
+.snipcart__modal,
+.snipcart__content,
+.snipcart-cart__header,
+.snipcart-cart__footer,
+.snipcart-summary-fees__notice {
+  background-color: #ffffff !important;
+  color: #000000 !important;
+}
+
+.snipcart__overlay {
+  background: rgba(0, 0, 0, 0.9) !important;
+}
+
+/*------------------*/
+/* Buttons */
+/*------------------*/
+.snipcart-button,
+.snipcart-button--primary,
+.snipcart-button-primary,
+.snipcart-button--highlight,
+.snipcart-button--secondary {
+  background-color: #000 !important;
+  color: #fff !important;
+  border-radius: var(--snipcart-border-radius) !important;
+  border: 1px solid #000 !important;
+  font-weight: 600 !important;
+  text-transform: uppercase;
+  padding: 10px 20px !important;
+  transition: all 0.3s ease;
+}
+
+.snipcart-button:hover {
+  background-color: #222 !important;
+  border-color: #222 !important;
+}
+
+/* Back to store link */
+.snipcart__font--small.snipcart__link,
+.snipcart-cart-header__back-button {
+  color: #000 !important;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+/*------------------*/
+/* Quantity Buttons */
+/*------------------*/
+.snipcart-quantity-step {
+  background-color: #000 !important;
+  color: #fff !important;
+  border: 1px solid #000 !important;
+  border-radius: 6px !important;
+  padding: 0.25rem 0.6rem !important;
+  font-weight: bold;
+}
+
+.snipcart-quantity-input {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+  border-radius: 6px !important;
+  text-align: center;
+}
+
+/*------------------*/
+/* Input Fields */
+/*------------------*/
+
+.snipcart-form__label,
+.snipcart__address-form label {
+  color: #020202 !important;
+  font-weight: 500 !important;
+  margin-bottom: 0.25rem;
+  display: inline-block;
+}
+
+/*------------------*/
+/* Cart Item Styling */
+/*------------------*/
+.snipcart-item-line__container {
+  border-bottom: 1px solid #ddd !important;
+  background-color: #f8f8f8 !important;
+  padding: 1rem 0;
+  color: #000 !important;
+}
+
+.snipcart__font--regular,
+.snipcart__font--large,
+.snipcart__font--small,
+.snipcart__font--secondary {
+  color: #000 !important;
+}
+
+/*------------------*/
+/* Fees & Totals */
+/*------------------*/
+.snipcart-summary-fees__title,
+.snipcart-summary-fees__amount {
+  color: #000 !important;
+}
+
+
+/*------------------*/
+/* Misc */
+/*------------------*/
+
+/* Remove Snipcart branding if plan allows */
+.snipcart-footer__powered-by {
+  display: none !important;
+}
+
+/* Hide badges/icons if needed */
+.snipcart__icon,
+.snipcart__icon svg {
+  color: #000 !important;
+  stroke: #000 !important;
+}
+
+/* Scrollbar */
+.snipcart__modal::-webkit-scrollbar {
+  width: 6px;
+}
+.snipcart__modal::-webkit-scrollbar-thumb {
+  background-color: #000;
+  border-radius: 4px;
+}
+/* Remove unnecessary white footer padding or block */
+.snipcart-cart__footer,
+.snipcart-summary-fees,
+.snipcart-form__footer {
+  background-color: transparent !important;
+  border-top: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Prevent white strip under main modal */
+.snipcart__modal {
+  background: #ffffff !important;
+}
+
+/* If necessary, enforce consistent background in nested summary area */
+.snipcart-summary-fees__notice {
+  background: transparent !important;
+  color: #000 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+}
+
+/* Optional: remove extra spacing under last cart items */
+.snipcart__box--footer {
+  background-color: transparent !important;
+  padding-bottom: 0 !important;
+}
