@@ -2,6 +2,7 @@
 
 import './globals.css'
 import '../../styles/snipcart.css'
+import Link from 'next/link'
 
 import { type Metadata } from 'next'
 import {
@@ -51,8 +52,15 @@ export default function RootLayout({
         </head>
         <body className="antialiased bg-black text-white">
           <header className="flex justify-between items-center p-4 border-b border-white/10">
-            <div className="text-lg font-bold">🛒 Nuro Store</div>
+          
+            <div className="text-lg font-bold"> 
+              <Link href="/" >
+              Nuro Store
+              </Link>
+            </div>
+
             <div className="flex items-center gap-4">
+              
               <SignedOut>
                 <SignInButton />
                 <SignUpButton>
