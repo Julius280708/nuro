@@ -41,6 +41,7 @@ export default function QandA() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+
   const sendQuestion = async (e: FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
@@ -61,8 +62,9 @@ export default function QandA() {
         throw new Error("Sending failed");
       }
     } catch (err) {
-      setStatus("error");
-    }
+  console.error("Fehler beim Senden der Frage:", err);
+  setStatus("error");
+}
   };
 
   return (

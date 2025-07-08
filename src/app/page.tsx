@@ -1,107 +1,105 @@
+
 "use client";
 
 import Link from "next/link";
 import Image from "next/image";
-
 import { Instagram, Facebook } from "lucide-react";
-import { JSX, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 type Language = "EN" | "DE";
 type Consent = "accepted" | "declined" | "settings" | null;
 
 declare global {
   interface Window {
-    Snipcart?: any;
+    Snipcart?: unknown;
   }
 }
 
-export default function HomePage(): JSX.Element {
-  const [loading, setLoading] = useState(false);
+const translations = {
+  EN: {
+    heroTitle: "Look different,\nthink different.",
+    heroSubtitle:
+      "Introducing TE1! — your customised t-shirt first edition. Designed for those who stand out.",
+    buyNow: "Buy Now",
+    nurotshirtTitle: "Nuro T-Shirts",
+    customizeNow: "Customize Now",
+    aboutUs: "About Us",
+    logosTitle: "Logos and Fontstyles",
+    logosDesc:
+      "Premium art and fontstyles for your fit that make you stand out. Over 100+ designs to choose from, created by artists worldwide.",
+    logosBtn: "Designed Logos",
+    communityTitle: "Logos of our Customers",
+    communityBtn: "Community Logos",
+    nurotshirt: "Nuro T-Shirt",
+    nurotshirtDesc:
+      "The perfect blend of comfort and style, tailored just for you.",
+    cookieText: "This website uses cookies to improve your experience.",
+    moreInfo: "Learn more",
+    qna: "Q & A",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    contact: "Contact",
+    login: "Login / Register",
+  },
+  DE: {
+    heroTitle: "Sieh anders aus,\ndenke anders.",
+    heroSubtitle:
+      "Entdecke TE1! — dein individuell gestaltetes T-Shirt der ersten Edition. Für alle, die herausstechen wollen.",
+    buyNow: "Jetzt kaufen",
+    customizeNow: "Jetzt gestalten",
+    aboutUs: "Über uns",
+    logosTitle: "Logos und Schriftarten",
+    logosDesc:
+      "Exklusive Kunstwerke und Schriftarten für dein Outfit. Über 100+ Designs von Künstler:innen weltweit.",
+    logosBtn: "Designte Logos",
+    communityTitle: "Logos unserer Kunden",
+    communityBtn: "Community Logos",
+    nurotshirt: "Nuro T-Shirt",
+    nurotshirtDesc:
+      "Die perfekte Mischung aus Komfort und Stil, individuell für dich gestaltet.",
+    cookieText:
+      "Diese Website verwendet Cookies, um dein Erlebnis zu verbessern.",
+    moreInfo: "Mehr erfahren",
+    qna: "Fragen & Antworten",
+    privacy: "Datenschutzerklärung",
+    terms: "Nutzungsbedingungen",
+    contact: "Kontakt",
+    login: "Anmelden / Registrieren",
+  },
+};
+
+export default function HomePage() {
   const [language, setLanguage] = useState<Language>("EN");
   const [consent, setConsent] = useState<Consent>(null);
   const [mounted, setMounted] = useState(false);
-  const [year, setYear] = useState<number | null>(null);
-  
+  const [year, setYear] = useState<number>(new Date().getFullYear());
+  const [snipcartReady, setSnipcartReady] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const t = translations[language];
 
   useEffect(() => {
     setMounted(true);
-    setYear(new Date().getFullYear());
     const storedConsent = localStorage.getItem("nuro-cookie-consent") as Consent;
-    if (storedConsent) {
-      setConsent(storedConsent);
-    }
+    if (storedConsent) setConsent(storedConsent);
   }, []);
-  const [snipcartReady, setSnipcartReady] = useState(false);
 
-useEffect(() => {
-  const check = () => {
-    if (window.Snipcart) {
-      setSnipcartReady(true);
-    } else {
-      setTimeout(check, 300);
-    }
-  };
+  useEffect(() => {
+    const checkSnipcart = () => {
+      if (window.Snipcart) {
+        setSnipcartReady(true);
+      } else {
+        setTimeout(checkSnipcart, 300);
+      }
+    };
 
-  if (typeof window !== "undefined") {
-    check();
-  }
-}, []);
-
- // Prevent hydration mismatch
+    if (typeof window !== "undefined") checkSnipcart();
+  }, []);
 
   const handleConsent = (value: Consent) => {
     localStorage.setItem("nuro-cookie-consent", value ?? "");
     setConsent(value);
   };
-
-  const t = {
-    EN: {
-      heroTitle: "Look different,\nthink different.",
-      heroSubtitle:
-        "Introducing TE1! — your customised t-shirt first edition. Designed for those who stand out.",
-      buyNow: "Buy Now",
-      nurotshirtTitle: "Nuro T-Shirts",
-      customizeNow: "Customize Now",
-      aboutUs: "About Us",
-      logosTitle: "Logos and Fontstyles",
-      logosDesc:
-        "Premium art and fontstyles for your fit that make you stand out. Over 100+ designs to choose from, created by artists worldwide.",
-      logosBtn: "Designed Logos",
-      communityTitle: "Logos of our Customers",
-      communityBtn: "Community Logos",
-      nurotshirt: "Nuro T-Shirt",
-      nurotshirtDesc: "The perfect blend of comfort and style, tailored just for you.",
-      cookieText: "This website uses cookies to improve your experience.",
-      moreInfo: "Learn more",
-      qna: "Q & A",
-      privacy: "Privacy Policy",
-      terms: "Terms of Service",
-      contact: "Contact",
-      login: "Login / Register",
-    },
-    DE: {
-      heroTitle: "Sieh anders aus,\ndenke anders.",
-      heroSubtitle:
-        "Entdecke TE1! — dein individuell gestaltetes T-Shirt der ersten Edition. Für alle, die herausstechen wollen.",
-      buyNow: "Jetzt kaufen",
-      customizeNow: "Jetzt gestalten",
-      aboutUs: "Über uns",
-      logosTitle: "Logos und Schriftarten",
-      logosDesc:
-        "Exklusive Kunstwerke und Schriftarten für dein Outfit. Über 100+ Designs von Künstler:innen weltweit.",
-      logosBtn: "Designte Logos",
-      communityTitle: "Logos unserer Kunden",
-      communityBtn: "Community Logos",
-      cookieText:
-        "Diese Website verwendet Cookies, um dein Erlebnis zu verbessern.",
-      moreInfo: "Mehr erfahren",
-      qna: "Fragen & Antworten",
-      privacy: "Datenschutzerklärung",
-      terms: "Nutzungsbedingungen",
-      contact: "Kontakt",
-      login: "Anmelden / Registrieren",
-    },
-  }[language];
 
   return (
     <main className="min-h-screen bg-black text-white font-sans relative">
@@ -143,9 +141,6 @@ useEffect(() => {
         </div>
       )}
 
-      {/* Top Right Controls */}
-      
-
       {/* Hero Section */}
       <section className="flex flex-col items-center justify-center text-center py-24 px-4">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight whitespace-pre-line">
@@ -164,7 +159,7 @@ useEffect(() => {
         </Link>
       </section>
 
-      {/* Product + Logos Sections */}
+      {/* Product Sections */}
       {[
         {
           id: "te1",
@@ -176,20 +171,20 @@ useEffect(() => {
         {
           id: "logos",
           title: t.logosTitle,
-          subtitle: t.logosDesc, 
+          subtitle: t.logosDesc,
           button: t.logosBtn,
           link: "/cimage/",
         },
         {
           id: "community",
           title: t.communityTitle,
-          subtitle: t.logosDesc,
+          subtitle: "See how others customized their Nuro T-Shirts.",
           button: t.communityBtn,
           link: "/cimage/",
         },
         {
           id: "nurotshirt",
-          title: t.nurotshirtTitle,
+          title: t.nurotshirt,
           subtitle: t.nurotshirtDesc,
           button: t.nurotshirt,
           link: "/cimage/nurotshirt/",
@@ -207,7 +202,7 @@ useEffect(() => {
                 height={400}
                 alt={`Image for ${section.title}`}
                 className="bg-black rounded-xl shadow-lg cursor-pointer"
-                />
+              />
             </Link>
             <div>
               <h2 className="text-3xl font-semibold mb-4">{section.title}</h2>
@@ -221,7 +216,7 @@ useEffect(() => {
           </div>
         </section>
       ))}
-      
+
       {/* Footer */}
       <footer className="py-12 px-6 text-center text-gray-500 text-sm border-t border-gray-800 space-y-6">
         <div className="flex flex-wrap justify-center gap-4">
@@ -254,7 +249,7 @@ useEffect(() => {
             <Facebook className="w-5 h-5" />
           </Link>
         </div>
-        <p>&copy; {year ?? "-"} Nuro. All rights reserved.</p>
+        <p>&copy; {year} Nuro. All rights reserved.</p>
       </footer>
     </main>
   );
