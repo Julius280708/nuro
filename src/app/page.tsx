@@ -1,6 +1,4 @@
-
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { Instagram, Facebook } from "lucide-react";
@@ -69,10 +67,10 @@ const translations = {
 };
 
 export default function HomePage() {
-  const [language, setLanguage] = useState<Language>("EN");
+  const [language] = useState<Language>("EN");
   const [consent, setConsent] = useState<Consent>(null);
   const [mounted, setMounted] = useState(false);
-  const [year, setYear] = useState<number>(new Date().getFullYear());
+  const [year] = useState<number>(new Date().getFullYear());
   const [snipcartReady, setSnipcartReady] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -146,9 +144,7 @@ export default function HomePage() {
         <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight whitespace-pre-line">
           {t.heroTitle}
         </h1>
-        <p className="text-lg md:text-xl max-w-xl text-gray-400">
-          {t.heroSubtitle}
-        </p>
+        <p className="text-lg md:text-xl max-w-xl text-gray-400">{t.heroSubtitle}</p>
         <Link href="/nurotshirt/">
           <button
             onClick={() => setLoading(true)}
@@ -190,10 +186,7 @@ export default function HomePage() {
           link: "/cimage/nurotshirt/",
         },
       ].map((section) => (
-        <section
-          key={section.id}
-          className="py-20 px-4 border-t border-gray-800"
-        >
+        <section key={section.id} className="py-20 px-4 border-t border-gray-800">
           <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-12">
             <Link href={section.link}>
               <Image

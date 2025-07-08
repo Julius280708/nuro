@@ -1,8 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
+interface ImageData {
+  url: string;
+  name?: string;
+  usertag?: string;
+  date?: string;
+}
 export default function UploadPage() {
-  const [images, setImages] = useState<any[]>([]);
+  const [images, setImages] = useState<ImageData[]>([]);
   const [uploading, setUploading] = useState(false);
 
   const [name, setName] = useState("");
@@ -153,7 +160,7 @@ export default function UploadPage() {
     }}
     className="mb-6 bg-red-700 hover:bg-red-800 transition px-5 py-3 rounded-md text-white"
   >
-    🗑 Delete All Images
+    Delete All Images
   </button>
 )}
       <h2 className="text-2xl font-semibold mb-6 border-b border-darkblue pb-2">
@@ -169,11 +176,13 @@ export default function UploadPage() {
               key={idx}
               className="relative group bg-white text-black rounded-lg shadow-lg overflow-hidden flex flex-col items-center p-3"
             >
-              <img
-                src={img.url}
-                alt={img.name || `Uploaded ${idx + 1}`}
-                className="w-full h-auto rounded"
-              />
+             <Image
+  src={img.url}
+  alt={img.name || `Uploaded ${idx + 1}`}
+  width={300} // fixed width
+  height={300} // fixed height
+  className="rounded"
+/>
               <a
                 href={img.url}
                 download
